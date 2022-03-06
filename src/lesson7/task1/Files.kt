@@ -2,6 +2,8 @@
 
 package lesson7.task1
 
+import ru.spbstu.wheels.isNotEmpty
+import ru.spbstu.wheels.stack
 import java.io.File
 
 // Урок 7: работа с файлами

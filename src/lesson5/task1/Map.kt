@@ -2,6 +2,9 @@
 
 package lesson5.task1
 
+import ru.spbstu.kotlin.typeclass.classes.Monoid.Companion.plus
+import kotlin.math.absoluteValue
+
 // Урок 5: ассоциативные массивы и множества
 // Максимальное количество баллов = 14
 // Рекомендуемое количество баллов = 9
@@ -150,7 +153,7 @@ fun subtractOf(a: MutableMap<String, String>, b: Map<String, String>): MutableMa
  * Простая (2 балла)
  *
  * Для двух списков людей найти людей, встречающихся в обоих списках.
- * В выходном списке не должно быть повторяюихся элементов,
+ * В выходном списке не должно быть повторяющихся элементов,
  * т. е. whoAreInBoth(listOf("Марат", "Семён, "Марат"), listOf("Марат", "Марат")) == listOf("Марат")
  */
 fun whoAreInBoth(a: List<String>, b: List<String>): List<String> = a.intersect(b).toList()
@@ -191,7 +194,29 @@ fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<S
  *   averageStockPrice(listOf("MSFT" to 100.0, "MSFT" to 200.0, "NFLX" to 40.0))
  *     -> mapOf("MSFT" to 150.0, "NFLX" to 40.0)
  */
-fun averageStockPrice(stockPrices: List<Pair<String, Double>>): Map<String, Double> = TODO()
+fun averageStockPrice(stockPrices: List<Pair<String, Double>>): Map<String, Double> {
+    val result = mutableMapOf<String, Double>()
+    val resultTimes = mutableMapOf<String, Double>()
+    val resultSum = mutableMapOf<String, Double>()
+    for ((a, b) in stockPrices) {
+        if (resultTimes.containsKey(a)) {
+            var k = resultTimes[a]!!
+            k += 1.0
+            resultTimes[a] = k
+            var sum = resultSum[a]!!
+            sum += b
+            resultSum[a] = sum
+        } else {
+            resultTimes[a] = 1.0
+            resultSum[a] = b
+            result[a] = 0.0
+        }
+    }
+    for (element in result) {
+        result[element.key] = resultSum[element.key]!! / resultTimes[element.key]!!
+    }
+    return result.toMap()
+}
 
 /**
  * Средняя (4 балла)
@@ -349,4 +374,13 @@ fun findSumOfTwo(list: List<Int>, number: Int): Pair<Int, Int> {
  *     450
  *   ) -> emptySet()
  */
+
 fun bagPacking(treasures: Map<String, Pair<Int, Int>>, capacity: Int): Set<String> = TODO()
+
+
+
+
+
+
+
+

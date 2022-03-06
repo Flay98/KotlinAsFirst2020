@@ -316,6 +316,26 @@ class Tests {
             Pair(-1, -1),
             findSumOfTwo(listOf(1, 2, 3), 6)
         )
+        assertEquals(
+            Pair(0, 5),
+            findSumOfTwo(listOf(0, 3, 3, 8, 5, 0, 4), 0)
+        )
+        assertEquals(
+            Pair(-1, -1),
+            findSumOfTwo(listOf(0, 3, 3, 8, 5, 0, 4), -5)
+        )
+        assertEquals(
+            Pair(0, 1),
+            findSumOfTwo(listOf(0, 1), 1)
+        )
+        assertEquals(
+            Pair(-1, -1),
+            findSumOfTwo(listOf(0, 2), 1)
+        )
+        assertEquals(
+            Pair(1, 2),
+            findSumOfTwo(listOf(1, 1, 0), 1)
+        )
     }
 
     @Test
@@ -333,6 +353,32 @@ class Tests {
             bagPacking(
                 mapOf("Кубок" to (500 to 2000), "Слиток" to (1000 to 5000)),
                 450
+            )
+        )
+        assertEquals(
+            setOf("6", "5", "4", "3", "2", "1", "0"),
+            bagPacking(
+                mapOf(
+                    "0" to (1 to 1),
+                    "1" to (1 to 1),
+                    "2" to (1 to 1),
+                    "3" to (84 to 1),
+                    "4" to (1 to 1),
+                    "5" to (1 to 1),
+                    "6" to (500 to 1),
+                    "7" to (456 to 1)
+                ),
+                1016
+            )
+        )
+        assertEquals(
+            setOf("1"),
+            bagPacking(
+                mapOf(
+                    "0" to (1 to 1),
+                    "1" to (2 to 2),
+                ),
+                2
             )
         )
     }
